@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reserve.me - Entrar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main class="login-container">
+        <h1>reserve me</h1>
+        
+        <form id="loginForm" novalidate>
+            <div class="input-group">
+                <label for="email">E-mail</label>
+                <span id="emailError" class="error-message">Informe um e-mail válido.</span>
+                <input type="email" id="email" name="email" placeholder="seu@email.com" autocomplete="email" aria-describedby="emailError" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <span id="passwordError" class="error-message">Informe sua senha.</span>
+                <input type="password" id="password" name="password" placeholder="Sua senha" autocomplete="current-password" aria-describedby="passwordError" required>
+            </div>
+
+            <p id="loginValidationMessage" class="form-error" role="alert" aria-live="assertive"></p>
+            <button type="submit" id="submitBtn">Entrar</button>
+            
+            <a href="recuperar-senha.html" class="recovery-link">Esqueceu sua senha?</a>
+        </form>
+    </main>
+
+    <footer class="footer">
+        <a href="termos-privacidade.html#termos">Termos de uso</a>
+        <span>·</span>
+        <a href="termos-privacidade.html#privacidade">Privacidade</a>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+services:
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: reserve_me
+      MYSQL_USER: reserve_me
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-reserve_me_local}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-reserve_me_root_local}
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - reserve-me-mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "root", "-p$${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+volumes:
+  reserve-me-mysql:

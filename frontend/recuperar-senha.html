@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reserve.me - Recuperar senha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main class="recovery-container">
+        <h1>Recuperar senha</h1>
+        <p class="recovery-description">
+            Informe seu e-mail e enviaremos as instruções para redefinir sua senha.
+        </p>
+
+        <form id="recoveryForm" novalidate>
+            <div class="input-group">
+                <label for="email">E-mail</label>
+                <span id="emailError" class="error-message">Informe um e-mail válido.</span>
+                <input type="email" id="email" name="email" placeholder="seu@email.com" autocomplete="email" aria-describedby="emailError" required>
+            </div>
+
+            <p id="validationMessage" class="form-error" role="alert" aria-live="assertive"></p>
+            <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+            <button type="submit" id="submitBtn">Enviar instruções</button>
+            <a href="index.html" class="recovery-link">Voltar para o login</a>
+        </form>
+    </main>
+
+    <footer class="footer">
+        <a href="termos-privacidade.html#termos">Termos de uso</a>
+        <span>·</span>
+        <a href="termos-privacidade.html#privacidade">Privacidade</a>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/recovery.js"></script>
+</body>
+</html>
