@@ -79,3 +79,32 @@ export function existeConflito(novaReserva, reservas) {
         );
     });
 }
+
+export function cabeNaSala(quantidadeAlunos, salaId, salas) {
+    if (!Number.isInteger(quantidadeAlunos) || quantidadeAlunos < 1) {
+        throw new RangeError('quantidadeAlunos deve ser um inteiro positivo.');
+    }
+
+    if (
+        (typeof salaId !== 'string' && typeof salaId !== 'number')
+        || String(salaId).trim() === ''
+        || (typeof salaId === 'number' && !Number.isFinite(salaId))
+    ) {
+        throw new TypeError('salaId deve ser um identificador válido.');
+    }
+
+    if (!Array.isArray(salas)) {
+        throw new TypeError('salas deve ser uma lista.');
+    }
+
+    const sala = salas.find((item) => String(item.id) === String(salaId));
+    if (!sala) {
+        return false;
+    }
+
+    if (!Number.isInteger(sala.capacidade) || sala.capacidade < 1) {
+        throw new TypeError('A capacidade da sala deve ser um inteiro positivo.');
+    }
+
+    return quantidadeAlunos <= sala.capacidade;
+}

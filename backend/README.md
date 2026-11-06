@@ -26,3 +26,7 @@ permitidas para reservas sao `cancelada`, `aprovada` e `pendente`. O script de
 inicializacao nao apaga nem substitui dados existentes. Scripts da pasta de
 inicializacao do MySQL sao executados automaticamente somente quando o volume
 do banco e criado pela primeira vez.
+
+A funcao `cabeNaSala(quantidadeAlunos, salaId, salas)` verifica se uma turma
+cabe na capacidade da sala. Retorna `false` se a sala nao existir ou nao
+tiver capacidade suficiente e rejeita entradas invalidas com erro.

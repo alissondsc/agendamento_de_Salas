@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { existeConflito, horariosConflitam } from '../src/reservas.js';
+import { cabeNaSala, existeConflito, horariosConflitam } from '../src/reservas.js';
 
 const novaReserva = {
     sala_id: 1,
@@ -90,4 +90,24 @@ test('nao detecta conflito em outra sala ou em outra data', () => {
     ];
 
     assert.equal(existeConflito(novaReserva, reservas), false);
+});
+
+test('cabeNaSala aceita turma menor ou igual a capacidade', () => {
+    const salas = [{ id: 1, capacidade: 30 }];
+
+    assert.equal(cabeNaSala(20, 1, salas), true);
+    assert.equal(cabeNaSala(30, '1', salas), true);
+});
+
+test('cabeNaSala rejeita turma maior que a capacidade', () => {
+    assert.equal(cabeNaSala(31, 1, [{ id: 1, capacidade: 30 }]), false);
+});
+
+test('cabeNaSala retorna falso quando a sala nao existe', () => {
+    assert.equal(cabeNaSala(10, 2, [{ id: 1, capacidade: 30 }]), false);
+});
+
+test('cabeNaSala rejeita quantidade de alunos invalida e lista de salas invalida', () => {
+    assert.throws(() => cabeNaSala(0, 1, []), /inteiro positivo/);
+    assert.throws(() => cabeNaSala(1, 1, null), /salas deve ser uma lista/);
 });
