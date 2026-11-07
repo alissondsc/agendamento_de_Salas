@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reserve.me - Criar conta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main class="login-container">
+        <h1>criar conta</h1>
+
+        <form id="registerForm" novalidate>
+            <div class="input-group">
+                <label for="name">Nome</label>
+                <span class="error-message">Informe seu nome (pelo menos 2 caracteres).</span>
+                <input type="text" id="name" name="name" placeholder="Seu nome" autocomplete="name" minlength="2" maxlength="120" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">E-mail</label>
+                <span class="error-message">Informe um e-mail válido.</span>
+                <input type="email" id="email" name="email" placeholder="seu@email.com" autocomplete="email" maxlength="254" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <span class="error-message">A senha deve ter pelo menos 8 caracteres.</span>
+                <input type="password" id="password" name="password" placeholder="Mínimo de 8 caracteres" autocomplete="new-password" minlength="8" maxlength="128" required>
+            </div>
+
+            <div class="input-group">
+                <label for="confirmPassword">Confirmar senha</label>
+                <span class="error-message">As senhas devem ser iguais.</span>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repita sua senha" autocomplete="new-password" required>
+            </div>
+
+            <p id="registerValidationMessage" class="form-error" role="alert" aria-live="assertive"></p>
+            <button type="submit">Criar conta</button>
+            <a href="index.html" class="recovery-link">Já tem uma conta? Entrar</a>
+        </form>
+    </main>
+
+    <footer class="footer">
+        <a href="termos-privacidade.html#termos">Termos de uso</a>
+        <span>·</span>
+        <a href="termos-privacidade.html#privacidade">Privacidade</a>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>

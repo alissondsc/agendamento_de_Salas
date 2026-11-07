@@ -17,10 +17,11 @@ CREATE TABLE IF NOT EXISTS reservas (
     data_fim DATETIME NOT NULL,
     responsavel VARCHAR(160) NOT NULL,
     finalidade VARCHAR(500) NOT NULL,
+    quantidade_alunos SMALLINT UNSIGNED NOT NULL DEFAULT 1,
     situacao ENUM('cancelada', 'aprovada', 'pendente') NOT NULL DEFAULT 'pendente',
     criada_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE KEY uq_reservas_sala_inicio (sala_id, data_inicio),
+    KEY idx_reservas_sala_inicio (sala_id, data_inicio),
     KEY idx_reservas_data (data_inicio, data_fim),
     KEY idx_reservas_situacao (situacao),
     CONSTRAINT fk_reservas_salas
@@ -28,6 +29,17 @@ CREATE TABLE IF NOT EXISTS reservas (
         ON UPDATE CASCADE
         ON DELETE RESTRICT,
     CONSTRAINT chk_reservas_periodo CHECK (data_fim > data_inicio)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(120) NOT NULL,
+    email VARCHAR(254) NOT NULL,
+    senha_hash CHAR(128) NOT NULL,
+    senha_salt CHAR(32) NOT NULL,
+    criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY uq_usuarios_email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO salas (nome, andar, capacidade, recursos)

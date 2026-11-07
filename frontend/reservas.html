@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reserve.me - Reservas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="reservations-page">
+    <main class="reservations-container">
+        <header class="reservations-header">
+            <div>
+                <h1>reserve me</h1>
+                <p id="welcomeMessage">Carregando sua conta...</p>
+            </div>
+            <button type="button" id="logoutButton">Sair</button>
+        </header>
+
+        <div class="reservation-layout">
+            <section class="reservation-panel" aria-labelledby="newReservationHeading">
+                <h2 id="newReservationHeading">Solicitar reserva</h2>
+                <form id="reservationForm" class="reservation-form" novalidate>
+                    <div class="input-group">
+                        <label for="room">Sala</label>
+                        <select id="room" name="room" required>
+                            <option value="">Carregando salas...</option>
+                        </select>
+                    </div>
+
+                    <p id="roomDetails" class="room-details" aria-live="polite"></p>
+
+                    <div class="input-group">
+                        <label for="students">Quantidade de alunos</label>
+                        <input type="number" id="students" name="students" min="1" step="1" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="start">Início</label>
+                        <input type="datetime-local" id="start" name="start" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="end">Fim</label>
+                        <input type="datetime-local" id="end" name="end" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="purpose">Finalidade</label>
+                        <textarea id="purpose" name="purpose" maxlength="500" required></textarea>
+                    </div>
+
+                    <p id="reservationMessage" class="form-error" role="alert" aria-live="assertive"></p>
+                    <button type="submit">Solicitar reserva</button>
+                </form>
+            </section>
+
+            <section class="reservation-panel" aria-labelledby="reservationListHeading">
+                <h2 id="reservationListHeading">Reservas cadastradas</h2>
+                <p id="listMessage" class="form-error" role="alert"></p>
+                <div id="reservationList" class="reservation-list" aria-live="polite">
+                    <p class="empty-state">Carregando reservas...</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <a href="termos-privacidade.html#termos">Termos de uso</a>
+        <span>·</span>
+        <a href="termos-privacidade.html#privacidade">Privacidade</a>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/reservas.js"></script>
+</body>
+</html>

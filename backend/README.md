@@ -18,6 +18,19 @@ disponível. Configure `CORS_ORIGINS` no `.env` para autorizar a origem do servi
 estático do frontend. O cliente do frontend usa `http://localhost:3000/api` por padrão;
 para outro ambiente, defina `window.RESERVE_ME_API_URL` antes de carregar `js/api.js`.
 
+O cadastro em `POST /api/auth/register` cria uma conta com nome, e-mail e senha
+(mínimo de 8 caracteres); a senha é armazenada com hash e salt. O login é feito
+em `POST /api/auth/login`. A tabela `usuarios` é criada automaticamente quando a
+API inicia, inclusive em volumes MySQL existentes.
+
+Após entrar, a tela `frontend/reservas.html` permite consultar as salas e
+solicitar reservas. A API lista salas em `GET /api/salas`, lista reservas em
+`GET /api/reservas` e cria solicitações pendentes em `POST /api/reservas`.
+O banco valida a lotação e impede sobreposição de horários em uma mesma sala;
+reservas canceladas não bloqueiam um novo horário, inclusive quando o banco já
+tinha a restrição de horário único. A API atualiza esse índice e adiciona a
+coluna de quantidade de alunos automaticamente em bancos locais já existentes.
+
 As credenciais padrão do Compose são somente para desenvolvimento local; não as
 utilize em ambientes compartilhados ou de produção.
 
